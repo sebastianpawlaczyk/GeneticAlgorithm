@@ -1,11 +1,14 @@
 // Sebastian Pawlaczyk 2019
 
+#include "Agent.hpp"
+
 #include <algorithm>
 #include <iostream>
 #include <fstream>
-#include "Agent.hpp"
 
 #include "src/Generator.hpp"
+
+#define POPOULATION 5
 
 Agent::Agent()
 {
@@ -16,7 +19,7 @@ void Agent::prepareEnvironment()
 {
 	Generator generator;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < POPOULATION; i++)
 	{
 		population_.push_back(generator.randomizeCoefficients());
 	}

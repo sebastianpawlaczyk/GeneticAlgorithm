@@ -15,14 +15,14 @@ Individual::Individual(std::vector<double> c)
 
 void Individual::calculateFitness(const PositiveSet& pSet, const PositiveSet& nSet)
 {
-/*	for (const auto& point: pSet)
+	for (const auto& point: pSet)
 	{
 		double y = calculateY(point.getX());
 		if (!isAbove(y, point.getY()))
 		{
 			fitness++;
 		}
-	}*/
+	}
 
 	for (const auto& point: nSet)
 	{

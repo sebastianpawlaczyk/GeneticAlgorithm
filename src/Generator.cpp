@@ -6,7 +6,10 @@
 #include <cstdlib>
 #include <fstream>
 
-Generator::Generator():degree(2)
+#define POINTS 50
+#define DEGREE 2
+
+Generator::Generator():degree(DEGREE)
 {}
 
 std::vector<double> Generator::randomizeCoefficients()
@@ -18,7 +21,7 @@ std::vector<double> Generator::randomizeCoefficients()
 		if (i <= degree)
 		{
 			//randNumber = std::rand() % 5; // <0,5>
-			randNumber = (1 - (-0.4)) * ((double) rand() / (double) RAND_MAX) + (-0.4); // <-0.4 , 1>
+			randNumber = (1 - (-1)) * ((double) rand() / (double) RAND_MAX) + (-1); // <-0.4 , 1>
 			coefficients.push_back(randNumber);
 			continue;
 		}
@@ -29,17 +32,32 @@ std::vector<double> Generator::randomizeCoefficients()
 
 Collection Generator::randomizePoints(bool positivePoints)
 {
+	double max_x = 1;
+	double min_x = 0.25;
+	double max_y = 0.5;
+	double min_y = -1;
+	std::string prefix = "negative";
+	if (positivePoints)
+	{
+		max_x = 0;
+		min_x = -1;
+		max_y = 1;
+		min_y = -0.5;
+		prefix = "positive";
+	}
+
+
 	std::srand(std::time(nullptr));
 	double randX;
 	double randY;
 	Collection set;
-	std::ofstream file ("/home/seba/PycharmProjects/geneticPlot/data.txt");
-	for (int i = 0; i < 50; i++)
+	std::ofstream file ("/home/seba/PycharmProjects/geneticPlot/data_" + prefix + ".txt");
+	for (int i = 0; i < POINTS; i++)
 	{
 		//randX = std::rand() % 10 + 1; // <1,20>
 		//randY = std::rand() % 100 + 1; // <1,20>
-		randX = (1 - (0)) * ( (double)rand() / (double)RAND_MAX ) + (0); // <-0.4 , 1>
-		randY = (0.5 - (-1)) * ( (double)rand() / (double)RAND_MAX ) + (-1); // <-0.4 , 1>
+		randX = (max_x - (min_x)) * ( (double)rand() / (double)RAND_MAX ) + (min_x); // <-0.4 , 1>
+		randY = (max_y - (min_y)) * ( (double)rand() / (double)RAND_MAX ) + (min_y); // <-0.4 , 1>
 		file << randX << " " << randY << std::endl;
 		set.push_back(Set(randX, randY));
 	}
