@@ -21,7 +21,7 @@ std::vector<double> Generator::randomizeCoefficients()
 		if (i <= degree)
 		{
 			//randNumber = std::rand() % 5; // <0,5>
-			randNumber = (1 - (-1)) * ((double) rand() / (double) RAND_MAX) + (-1); // <-0.4 , 1>
+			randNumber = (4 - (-4)) * ((double) rand() / (double) RAND_MAX) + (-4); // <-0.4 , 1>
 			coefficients.push_back(randNumber);
 			continue;
 		}
@@ -34,7 +34,7 @@ Collection Generator::randomizePoints(bool positivePoints)
 {
 	double max_x = 1;
 	double min_x = 0.25;
-	double max_y = 0.5;
+	double max_y = 0.7;
 	double min_y = -1;
 	std::string prefix = "negative";
 	if (positivePoints)
@@ -63,4 +63,14 @@ Collection Generator::randomizePoints(bool positivePoints)
 	}
 	file.close();
 	return set;
+}
+
+int Generator::randomizeNumber(int min, int max)
+{
+	return std::rand() % max + min; // <min,max>
+}
+
+int Generator::getDegree() const
+{
+	return degree;
 }

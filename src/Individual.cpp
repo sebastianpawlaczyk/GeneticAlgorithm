@@ -10,7 +10,6 @@ Individual::Individual(std::vector<double> c)
 : coefficients(c)
 	, fitness(0)
 {
-	logFunctionToConsole();
 }
 
 void Individual::calculateFitness(const PositiveSet& pSet, const PositiveSet& nSet)
@@ -32,8 +31,6 @@ void Individual::calculateFitness(const PositiveSet& pSet, const PositiveSet& nS
 			fitness++;
 		}
 	}
-
-	std::cout << "FITNESS " << fitness << std::endl;
 }
 
 bool Individual::isAbove(double y_func, double y_point)

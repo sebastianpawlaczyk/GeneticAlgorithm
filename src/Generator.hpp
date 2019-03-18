@@ -12,6 +12,9 @@ public:
 
 	std::vector<double> randomizeCoefficients();
 	Collection randomizePoints(bool positivePoints);
+	int randomizeNumber(int min, int max);
+
+	int getDegree() const;
 
 private:
 	unsigned int degree;
